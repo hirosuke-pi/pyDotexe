@@ -1,2 +1,0 @@
-[pyfile, \gi\_gi_cairo.py]
-[pyfile, \gi\repository\cairo.py]

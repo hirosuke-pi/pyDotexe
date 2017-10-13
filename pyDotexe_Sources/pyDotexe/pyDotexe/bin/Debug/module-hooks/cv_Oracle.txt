@@ -1,2 +1,0 @@
-[pyfile, Decimal.py, 2x]
-[pyfile, decimal.py, 3x]

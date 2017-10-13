@@ -1,1 +1,0 @@
-[pyfile, \gtkglext.py/\gdkgl.py/\gdkglext.py/\gdk.py/\gtk\gdk.py/\gtk\gtkgl.py/\gtk\gtkgl\_gtkgl.py/\gtkgl.py/\pangocairo.py/\pango.py/\atk.py/\gobject.py/\gtk\glade.py/\cairo.py/\gio.py/\gtk\keysyms.py]

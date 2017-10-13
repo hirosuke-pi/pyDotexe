@@ -1,6 +1,0 @@
-[pydir-regex,       (PyQt5).*?(imageformats)]
-[pydir-regex, (PyQt5).*?(iconengines)]
-[pydir-regex, (PyQt5).*?(accessible)]
-[pydir-regex, (PyQt5).*?(inputmethods)]
-[pydir-regex, (PyQt5).*?(graphicssystems)]
-[pydir-regex, (PyQt5).*?(iconengines)]

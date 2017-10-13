@@ -1,2 +1,0 @@
-[pydir, \lxml\isoschematron]
-[pydir, \lxml\resources]

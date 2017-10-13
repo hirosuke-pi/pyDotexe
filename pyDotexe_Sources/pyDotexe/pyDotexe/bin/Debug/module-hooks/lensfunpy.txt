@@ -1,1 +1,0 @@
-[pyfile, \numpy.py/\numpy\lib\info.py/\enum.py]

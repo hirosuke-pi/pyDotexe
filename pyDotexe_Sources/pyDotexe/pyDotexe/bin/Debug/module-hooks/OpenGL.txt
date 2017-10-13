@@ -1,2 +1,0 @@
-[pyfile, \OpenGL\platform\win32.py]
-[pydirfile, \OpenGL]

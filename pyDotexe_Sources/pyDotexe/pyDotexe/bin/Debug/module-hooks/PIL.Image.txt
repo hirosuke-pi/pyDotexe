@@ -1,1 +1,0 @@
-[pyfile-regex, (PIL).*?(ImagePlugin.py)]

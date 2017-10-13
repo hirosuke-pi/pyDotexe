@@ -1,2 +1,0 @@
-[pyfile, \netCDF4\utils.py]
-[pyfile, \netcdftime.py]

@@ -1,2 +1,0 @@
-[pyfile, django\db\models\sql\compiler.py]
-[pydirfile, \django\db\backends']

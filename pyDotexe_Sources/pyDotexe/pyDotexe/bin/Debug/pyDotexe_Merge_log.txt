@@ -1,3 +1,0 @@
--merge -src C:\Users\hiroki\Desktop\Python\pyDotexe_ui -start-bin python.exe -start-src ui.py --wait-key
--merge -src C:\Users\hiroki\Desktop\Python\pyDotexe_ui -start-bin python.exe -start-src ui.py --wait-key --no-onefile
--merge -src C:\Users\hiroki\Desktop\Python\pyDotexe_ui -start-bin python.exe -start-src ui.pyc --wait-key --no-onefile

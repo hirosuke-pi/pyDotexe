@@ -1,3 +1,0 @@
-[excdir, IPython]
-[excdir, matplotlib]
-[pydirfile, \django\core\management\commands]
