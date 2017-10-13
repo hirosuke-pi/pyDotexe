@@ -1,0 +1,6 @@
+C:\Users\hiroki\Documents\Visual Studio 2017\Projects\pywApp\pywApp\bin\Debug\pywApp.exe.config
+C:\Users\hiroki\Documents\Visual Studio 2017\Projects\pywApp\pywApp\bin\Debug\pywApp.exe
+C:\Users\hiroki\Documents\Visual Studio 2017\Projects\pywApp\pywApp\bin\Debug\pywApp.pdb
+C:\Users\hiroki\Documents\Visual Studio 2017\Projects\pywApp\pywApp\obj\Debug\pywApp.exe
+C:\Users\hiroki\Documents\Visual Studio 2017\Projects\pywApp\pywApp\obj\Debug\pywApp.pdb
+C:\Users\hiroki\Documents\Visual Studio 2017\Projects\pywApp\pywApp\obj\Debug\pywApp.csprojResolveAssemblyReference.cache

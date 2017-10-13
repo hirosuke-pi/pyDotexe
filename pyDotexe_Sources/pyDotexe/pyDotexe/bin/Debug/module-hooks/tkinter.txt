@@ -1,0 +1,2 @@
+[pydir, tcl8.6]
+[pydir, tk8.6]

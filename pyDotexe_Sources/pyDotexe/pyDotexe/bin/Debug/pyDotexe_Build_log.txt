@@ -1,0 +1,29 @@
+-build -src C:\Users\hiroki\Desktop\Python\jp.py -py C:\Users\hiroki\AppData\Local\Programs\Python\Python35 --wait-key
+-build -src C:\Users\hiroki\Desktop\Python\jp.py -py C:\Users\hiroki\AppData\Local\Programs\Python\Python35 --wait-key --zip-out
+-build -src C:\Users\hiroki\Desktop\Python\jp.py -py C:\Users\hiroki\AppData\Local\Programs\Python\Python35 --wait-key
+-build -src C:\Users\hiroki\Desktop\Python\ui.py -py C:\Users\hiroki\AppData\Local\Programs\Python\Python35 --wait-key
+-build -src C:\Users\hiroki\Desktop\Python\mat.py -py C:\Users\hiroki\AppData\Local\Programs\Python\Python35 --wait-key
+-build -src C:\Users\hiroki\Desktop\Python\ui.py -py C:\Users\hiroki\AppData\Local\Programs\Python\Python35 --wait-key
+-build -src C:\Users\hiroki\Desktop\Python\ui.py -py C:\Users\hiroki\AppData\Local\Programs\Python\Python35 -pydir-regex (PyQt5).*?(platforms) --wait-key
+-build -src C:\Users\hiroki\Desktop\Python\jp.py -py C:\Users\hiroki\AppData\Local\Programs\Python\Python35 -pydir-regex (PyQt5).*?(platforms) --wait-key
+-build -src C:\Users\hiroki\Desktop\Python\ui.py -py C:\Users\hiroki\AppData\Local\Programs\Python\Python35 -pydir-regex (PyQt5).*?(platforms) --wait-key
+-build -src C:\Users\hiroki\Desktop\Python\ui.py -py C:\Users\hiroki\AppData\Local\Programs\Python\Python35 --wait-key
+-build -src C:\Users\hiroki\Desktop\Python\mat.py -py C:\Users\hiroki\AppData\Local\Programs\Python\Python35 --wait-key
+-build -src C:\Users\hiroki\Desktop\Python\mat.py --check-only -py C:\Users\hiroki\AppData\Local\Programs\Python\Python35 --wait-key
+-build -src C:\Users\hiroki\Desktop\Python\mat.py -py C:\Users\hiroki\AppData\Local\Programs\Python\Python35 --wait-key
+-build -src C:\Users\hiroki\Desktop\Python\mat.py -py C:\Users\hiroki\AppData\Local\Programs\Python\Python35 --wait-key -excdir PIL
+-build -src C:\Users\hiroki\Desktop\Python\mat.py -py C:\Users\hiroki\AppData\Local\Programs\Python\Python35 --wait-key
+-build -src C:\Users\hiroki\Desktop\Python\mat.py -py C:\Users\hiroki\AppData\Local\Programs\Python\Python35 --wait-key -excdir PIL
+-build -src C:\Users\hiroki\Desktop\Python\mat.py -py C:\Users\hiroki\AppData\Local\Programs\Python\Python35 --wait-key -excdir PIL --eye
+-build -src C:\Users\hiroki\Desktop\Python\ui.py -py C:\Users\hiroki\AppData\Local\Programs\Python\Python35 --wait-key
+-build -src C:\Users\hiroki\Desktop\Python\ui.py -py C:\Users\hiroki\AppData\Local\Programs\Python\Python35 --wait-key -excdir PIL
+-build -src C:\Users\hiroki\Desktop\Python\mat.py -py C:\Users\hiroki\AppData\Local\Programs\Python\Python35 --wait-key -excdir PIL
+-build -src C:\Users\hiroki\Desktop\Python\mat.py -py C:\Users\hiroki\AppData\Local\Programs\Python\Python35 --wait-key -excfile PIL
+-build -src C:\Users\hiroki\Desktop\Python\mat.py -py C:\Users\hiroki\AppData\Local\Programs\Python\Python35 --wait-key -exclude PIL
+-build -src C:\Users\hiroki\Desktop\Python\mat.py -py C:\Users\hiroki\AppData\Local\Programs\Python\Python35 --wait-key
+-build -src C:\Users\hiroki\Desktop\Python\mat.py -py C:\Users\hiroki\AppData\Local\Programs\Python\Python35 --wait-key --check-only
+-build -src C:\Users\hiroki\Desktop\Python\ui.py -py C:\Users\hiroki\AppData\Local\Programs\Python\Python35 --wait-key --check-only
+-build -src C:\Users\hiroki\Desktop\Python\ui.py -py C:\Users\hiroki\AppData\Local\Programs\Python\Python35 --wait-key --check-only -path C:\
+-build -src C:\Users\hiroki\Desktop\Python\ui.py -py C:\Users\hiroki\AppData\Local\Programs\Python\Python35 --wait-key --check-only
+-build -src C:\Users\hiroki\Desktop\Python\ui.py -py C:\Users\hiroki\AppData\Local\Programs\Python\Python35 --wait-key
+-build -src C:\Users\hiroki\Desktop\Python\jp.py -py C:\Users\hiroki\AppData\Local\Programs\Python\Python35 --wait-key

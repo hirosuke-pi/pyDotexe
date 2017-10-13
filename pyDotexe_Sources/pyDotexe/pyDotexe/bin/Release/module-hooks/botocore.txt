@@ -1,0 +1,3 @@
+[pyfile, HTMLParser, 2x]
+[pyfile, html\parser, 3x]
+[pydir, \botocore]

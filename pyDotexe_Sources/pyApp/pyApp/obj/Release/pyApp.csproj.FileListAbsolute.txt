@@ -1,0 +1,6 @@
+C:\Users\hiroki\Documents\Visual Studio 2017\Projects\pyApp\pyApp\bin\Release\Application.exe.config
+C:\Users\hiroki\Documents\Visual Studio 2017\Projects\pyApp\pyApp\bin\Release\Application.exe
+C:\Users\hiroki\Documents\Visual Studio 2017\Projects\pyApp\pyApp\obj\Release\Application.exe
+C:\Users\hiroki\Documents\Visual Studio 2017\Projects\pyApp\pyApp\obj\Release\pyApp.csproj.CoreCompileInputs.cache
+C:\Users\hiroki\Documents\Visual Studio 2017\Projects\pyApp\pyApp\bin\Release\ICSharpCode.SharpZipLib.dll
+C:\Users\hiroki\Documents\Visual Studio 2017\Projects\pyApp\pyApp\obj\Release\pyApp.csprojResolveAssemblyReference.cache

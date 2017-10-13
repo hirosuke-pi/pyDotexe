@@ -1,0 +1,1 @@
+[pydir-regex, (PyQt5).*?(platforms)]

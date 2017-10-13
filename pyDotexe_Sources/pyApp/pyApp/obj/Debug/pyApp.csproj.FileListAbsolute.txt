@@ -1,0 +1,6 @@
+C:\Users\hiroki\Documents\Visual Studio 2017\Projects\pyApp\pyApp\obj\Debug\pyApp.csprojResolveAssemblyReference.cache
+C:\Users\hiroki\Documents\Visual Studio 2017\Projects\pyApp\pyApp\bin\Debug\Application.exe.config
+C:\Users\hiroki\Documents\Visual Studio 2017\Projects\pyApp\pyApp\bin\Debug\Application.exe
+C:\Users\hiroki\Documents\Visual Studio 2017\Projects\pyApp\pyApp\bin\Debug\Application.pdb
+C:\Users\hiroki\Documents\Visual Studio 2017\Projects\pyApp\pyApp\obj\Debug\Application.exe
+C:\Users\hiroki\Documents\Visual Studio 2017\Projects\pyApp\pyApp\obj\Debug\Application.pdb

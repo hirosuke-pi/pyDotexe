@@ -1,0 +1,4 @@
+-hooks --upgrade --wait-key
+-hooks -update C:\Users\hiroki\Desktop\module-hooks
+-hooks -update C:\Users\hiroki\Desktop\module-hooks --wait-key
+-hooks --upgrade --wait-key

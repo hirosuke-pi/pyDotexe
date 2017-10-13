@@ -1,0 +1,11 @@
+hook-appy.pod
+hook-astroid
+
+hook-bacon
+hook-clr
+hook-cryptography
+hook-distutils
+hook-enchant
+hook-gi
+hook-gst._gst
+hook-kivy

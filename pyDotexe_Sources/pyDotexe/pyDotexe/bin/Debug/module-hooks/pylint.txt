@@ -1,0 +1,1 @@
+[pydir, \pylint\checkers/\pylint\reporters]

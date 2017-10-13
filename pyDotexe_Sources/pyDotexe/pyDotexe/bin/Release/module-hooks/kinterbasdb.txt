@@ -1,0 +1,6 @@
+[pyfile, \k_exceptions.py/\services.py/\typeconv_naked.py/\
+typeconv_backcompat.py/\typeconv_23plus.py/\
+typeconv_datetime_stdlib.py/\typeconv_datetime_mx.py/\
+typeconv_datetime_naked.py/\typeconv_fixed_fixedpoint.py/\
+typeconv_fixed_stdlib.py/\typeconv_text_unicode.py/\
+typeconv_util_isinstance.py/\_kinterbasdb.py/\_kiservices]

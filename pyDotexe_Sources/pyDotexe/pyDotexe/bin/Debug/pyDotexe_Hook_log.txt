@@ -1,0 +1,3 @@
+-hooks -update C:\Users\hiroki\Desktop\module-hooks
+-hooks --upgrade -build -src C:\Users\hiroki\Desktop\Python\jp.py -py C:\Users\hiroki\AppData\Local\Programs\Python\Python35 --wait-key
+-hooks -update C:\Users\hiroki\Desktop\module-hooks -build -src C:\Users\hiroki\Desktop\Python\mat.py -py C:\Users\hiroki\AppData\Local\Programs\Python\Python35 --wait-key
