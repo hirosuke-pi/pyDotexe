@@ -1,4 +1,4 @@
-# pyDotexe
+﻿# pyDotexe
 pyDotexeは、Pythonで作成したプログラムを実行ファイル形式にできるツールです。
 
 # <５つの特徴>
@@ -20,7 +20,7 @@ pyDotexeは、Pythonで作成したプログラムを実行ファイル形式に
 
 # <インストールの仕方>
 
-1. pydotexe.exeを、PythonのScriptsフォルダにコピーする
+1. pydotexe.exeを、PythonのScriptsフォルダにコピー
 
 2. pydotexe.exeのsetup.pyを作成したい場合↓
 >pip install pydotexe
