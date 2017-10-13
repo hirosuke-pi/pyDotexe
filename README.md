@@ -29,7 +29,7 @@ pyDotexeは、Pythonで作成したプログラムを実行ファイル形式に
 
 ## Python
 
-動作確認済み: Python 2.1.x ~ Python 2.7.x, Python 3.0.x ~ Python 3.6.x
+動作確認済み: Python 1.6.x, Python 2.1.x ~ Python 2.7.x, Python 3.0.x ~ Python 3.6.x
 
 ## Windows
 
@@ -43,7 +43,7 @@ pyDotexeは、Pythonで作成したプログラムを実行ファイル形式に
 
 ※　Module-Hooksのモジュールデータはテスト中です。
 
-※　Python 2.1.x ~ Python 2.4.xでは、一部制限があります。
+※　Python 2.4.x以下では、一部制限があります。
 
 ※　Python 3.5.x 以降のバージョンではPythonの仕様上WindowsXPでは動作しません。
 
