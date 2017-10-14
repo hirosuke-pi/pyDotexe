@@ -1,0 +1,1 @@
+[pyfile-regex, (PySide).*?(codecs)]

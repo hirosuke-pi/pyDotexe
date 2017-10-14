@@ -1,0 +1,10 @@
+[pyfile, \
+PyQt5\QtCore.py/\
+PyQt5\QtGui.py/\
+PyQt5\QtNetwork.py/\
+PyQt5\QtWebChannel.py/\
+PyQt5\QtWebEngineCore.py
+]
+[pydir, \QtWebEngineCore\framework]
+[pydir-regex, (PyQt5).*?(Versions)]
+[pydir-regex, (PyQt5).*?(Resources)]

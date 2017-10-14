@@ -1,0 +1,13 @@
+[pyfile, sip.py/\
+PyQt4\QtAssistant.py/\
+PyQt4\QtCore.py/\
+PyQt4\QtGui.py/\
+PyQt4\QtNetwork.py/\
+PyQt4\Qt3Support.py/\
+PyQt4\QtSql.py/\
+PyQt4\QtSvg.py/\
+PyQt4\QtTest.py/\
+PyQt4\QtSql.py/\
+PyQt4\QtXml.py/\
+PyQt4\QtWebKit.py/\
+PyQt4\QtOpenGL.py]

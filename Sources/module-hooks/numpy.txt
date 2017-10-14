@@ -1,0 +1,1 @@
+[pyfile, numpy\lib\info.py]

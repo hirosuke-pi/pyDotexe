@@ -1,0 +1,1 @@
+[pydirfile, \pygments\formatters/\pygments\lexers/\pygments\styles]

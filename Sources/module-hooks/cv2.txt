@@ -1,0 +1,2 @@
+[pyfile, numpy.py]
+[pydir, \cv2]

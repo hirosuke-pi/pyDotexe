@@ -1,0 +1,3 @@
+[pyfile, \PyQt5\QtNetwork.py]
+[pydir-regex, (PyQt5).*?(audio)]
+[pydir-regex, (PyQt5).*?(mediaservice)]

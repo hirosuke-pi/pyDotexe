@@ -1,0 +1,2 @@
+[pydir, (PyQt4).*?(sqldrivers)]
+[pyfile, \PyQt4\QtCore.py/\PyQt4\QtGui.py]

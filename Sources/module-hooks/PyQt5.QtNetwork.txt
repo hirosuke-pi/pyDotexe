@@ -1,0 +1,2 @@
+[pyfile, \PyQt5\QtCore.py]
+[pydir-regex, (PyQt5).*?(bearer)]

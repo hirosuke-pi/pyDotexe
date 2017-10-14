@@ -1,0 +1,6 @@
+[pydir, \osgeo\data\gdal]
+[pydir, \Library\data]
+[pydir, \Library\data]
+
+[pyfile, \proj.dll]
+[pyfile, \lib\libproj.dylib]

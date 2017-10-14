@@ -1,0 +1,4 @@
+[pyfile, PyQt5\QtCore.py/\
+PyQt5\QtGui.py/\
+PyQt5\QtWidgets.py/\
+PyQt5\QtPrintSupport.py]

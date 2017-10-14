@@ -1,0 +1,5 @@
+setup.py
+pydotexe.egg-info/PKG-INFO
+pydotexe.egg-info/SOURCES.txt
+pydotexe.egg-info/dependency_links.txt
+pydotexe.egg-info/top_level.txt

@@ -1,0 +1,5 @@
+[pydir-regex, (PyQt4).*?(accessible)]
+[pydir-regex, (PyQt4).*?(iconengines)]
+[pydir-regex, (PyQt4).*?(imageformats)
+[pydir-regex, (PyQt4).*?(inputmethods)
+[pydir-regex, (PyQt4).*?(graphicssystems)]

@@ -22,7 +22,7 @@ pyDotexeは、Pythonで作成したプログラムを実行ファイル形式に
 
 1. pydotexe.exeを、PythonのScriptsフォルダにコピー
 
-2. pydotexe.exeのsetup.pyを作成したい場合↓
+2. py2exeのように、pydotexe.exeのsetup.pyを作成したい場合↓
 >pip install pydotexe
 
 # <サポート情報>
@@ -51,7 +51,7 @@ pyDotexeは、Pythonで作成したプログラムを実行ファイル形式に
 
 >pydotexe -build -src yourcode.py
 
->pydotexe -build -src yourhidecode.py --hide -icon myicon.ico
+>pydotexe -build -src yourcode.py --hide -icon myicon.ico
 
 >pydotexe -merge -src test.zip -start-bin python.exe -start-src yourcode.py
 
@@ -79,7 +79,8 @@ pyDotexeは、Pythonで作成したプログラムを実行ファイル形式に
 |(-icon)|ファイルパス|アプリケーションのアイコン指定
 |(-argv)|データ値|固定したいパラメータを設定
 |(-loader)|ファイルパス|モジュールパスを解析するPythonのソースコードを指定
-|(-comp=)|圧縮レベル(int)|圧縮度を設定(0, 1, 2)
+|(-pyver)|数値|Pythonのバージョンを手動設定 (ex: 3.1.x -> 31, 1.6.x -> 16)
+|(-comp=)|圧縮レベル(int)|圧縮度を設定(0~9)
 ---
 |任意コマンド|説明|
 |:--:|:--:|
