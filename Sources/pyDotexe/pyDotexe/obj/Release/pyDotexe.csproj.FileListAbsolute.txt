@@ -1,8 +1,0 @@
-C:\Users\hiroki\documents\visual studio 2017\Projects\pyDotexe\pyDotexe\bin\Release\pyDotexe.exe.config
-C:\Users\hiroki\documents\visual studio 2017\Projects\pyDotexe\pyDotexe\bin\Release\pyDotexe.exe
-C:\Users\hiroki\documents\visual studio 2017\Projects\pyDotexe\pyDotexe\obj\Release\pyDotexe.csprojResolveAssemblyReference.cache
-C:\Users\hiroki\documents\visual studio 2017\Projects\pyDotexe\pyDotexe\obj\Release\pyDotexe.Properties.Resource.resources
-C:\Users\hiroki\documents\visual studio 2017\Projects\pyDotexe\pyDotexe\obj\Release\pyDotexe.csproj.GenerateResource.Cache
-C:\Users\hiroki\documents\visual studio 2017\Projects\pyDotexe\pyDotexe\obj\Release\pyDotexe.exe
-C:\Users\hiroki\documents\visual studio 2017\Projects\pyDotexe\pyDotexe\obj\Release\pyDotexe.csproj.CoreCompileInputs.cache
-C:\Users\hiroki\Documents\Visual Studio 2017\Projects\pyDotexe\pyDotexe\bin\Release\ICSharpCode.SharpZipLib.dll
