@@ -53,6 +53,7 @@
  + -excdir, -excfileの廃止、-exclude(正規表現)に統合
  + マルチタスクによるモジュール検索の高速化
  + setup.pyに対応
+ + バージョン手動設定コマンド追加
  + pkg_resourcesに対応
  + Python 1.6.xに対応
  + ショートコマンドに対応
