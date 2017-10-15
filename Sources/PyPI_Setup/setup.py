@@ -3,13 +3,14 @@ from setuptools import setup, find_packages
 
 setup(
     name='pydotexe',
-    version='1.0.1',
+    version='1.0.3',
     author='betacode_',
     author_email='betacode.net@gmail.com',
     description = 'pyDotexe is a program that freezes Python programs into stand-alone executables under Windows.',
     long_description = '',
     url = 'https://github.com/betacode-project/pyDotexe',
     license = 'MIT',
+    packages=find_packages(),    
     platforms = ['Windows'],
     classifiers=[
         "Environment :: Console",
