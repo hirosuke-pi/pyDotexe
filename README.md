@@ -142,11 +142,12 @@ pip install pydotexe のコマンドでインストールしたモジュール�
 |コマンド|引数|説明|
 |:--:|:--:|:--:|
 |(-update)|フォルダパス|結合したいModule-Hooksデータフォルダ
-|(-add)|[モジュール名] [コマンド] [モジュール名]|Module-Hooksにデータを追加する
+|(-add)|[モジュール名] [コマンド] [モジュールデータ]|Module-Hooksにデータを追加する
 ---
 |任意コマンド|説明|
 |:--:|:--:|
 |--upgrade|Module-Hooksをアップグレードする
+|--upgrade-clean|Module-Hooksを再インストールする
 |--clear|Module-Hooksを初期化する
 |--no-log|ログを出力しない
 |--wait-key|終了時にキー入力を求める

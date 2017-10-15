@@ -44,7 +44,7 @@
  + コード圧縮機能追加 (--optimize)
 
 
-# [2017/10/00 - v1.0.0-Hydrogen : Standerd-Update]
+# [2017/10/15 - v1.0.0-Hydrogen : Standerd-Update]
  + *.dllファイル解析時のメモリ解放を最適化
  + module-hooksのサーバーを変更
  + 最低必須OSバージョンを、WindowsXPまで対応 (.NET Framework 4.0に対応)
