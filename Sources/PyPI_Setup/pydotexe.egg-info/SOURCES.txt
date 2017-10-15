@@ -1,5 +1,10 @@
 setup.py
+pydotexe/__check__.py
+pydotexe/__download__.py
+pydotexe/__getch__.py
 pydotexe/__init__.py
+pydotexe/__install__.py
+pydotexe/__start__.py
 pydotexe/setup.py
 pydotexe.egg-info/PKG-INFO
 pydotexe.egg-info/SOURCES.txt

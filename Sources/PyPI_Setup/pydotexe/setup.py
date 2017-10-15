@@ -1,5 +1,5 @@
 import os, sys
-import __download__, __check__, __start__
+from pydotexe.private import install, check, start
 
 __version__ = "1.0.0"
 
@@ -94,32 +94,28 @@ class build(object):
 
     def start_build(self, current_directory=""):
         ''' Start program '''
-
         # Set current directory.
-        if (current_directory == ""):
-            os.chdir(os.path.dirname(sys.argv[0]))
-        else:
-            os.chdir(os.path.dirname(current_directory))           
+        check.set_current_dir(current_directory)      
         print("[+] Set current directory: "+ os.getcwd())
         
         # Search pydotexe.exe
-        is_found = False
-        scripts_dir = ""
-        for path in sys.path:
-            if (os.path.isdir(path + "\\Scripts")):
-                scripts_dir = path + "\\Scripts"
-            if (os.path.isfile(path +"\\Scripts\\pydotexe.exe")):
-                is_found = True
-                break
+        print("[+] Searching pydotexe binary...")
+        is_found, scripts_dir = check.check_pydotexe_file()
 
         try:
             if (is_found):
                 print("[+] Starting pyDotexe process...")
-                if (self.upgrade_hooks_clean):
-                    os.system("pydotexe.exe -hooks --upgrade-clean")
-                os.system("pydotexe.exe "+ self.get_argv_data())
+                start.pydotexe_cmd(self.get_argv_data(), self.upgrade_hooks_clean)
             else:            
-                print("[-] 'pydotexe.exe' is not found in '"+ scripts_dir +"'.")
+                print("[-] 'pydotexe.exe' is not found in '"+ scripts_dir +"'.\r\n")
+                print("[*] Starting pydotexe installation...")
+
+                is_complete = install.install_pydotexe(scripts_dir, __version__)
+                if (is_complete):
+                    print("[+] Starting pyDotexe process...")
+                    start.pydotexe_cmd(self.get_argv_data(), self.upgrade_hooks_clean)
+                else:
+                    print("[-] Failed installation.")
 
         except KeyboardInterrupt:
             print("\n[-] Stopped pyDotexe process.")
