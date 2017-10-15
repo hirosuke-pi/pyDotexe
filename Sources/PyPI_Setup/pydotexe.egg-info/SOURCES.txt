@@ -1,12 +1,11 @@
 setup.py
-pydotexe/__check__.py
-pydotexe/__download__.py
-pydotexe/__getch__.py
 pydotexe/__init__.py
-pydotexe/__install__.py
-pydotexe/__start__.py
 pydotexe/setup.py
 pydotexe.egg-info/PKG-INFO
 pydotexe.egg-info/SOURCES.txt
 pydotexe.egg-info/dependency_links.txt
 pydotexe.egg-info/top_level.txt
+pydotexe/private/__init__.py
+pydotexe/private/check.py
+pydotexe/private/install.py
+pydotexe/private/start.py

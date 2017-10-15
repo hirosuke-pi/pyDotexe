@@ -25,6 +25,21 @@ pyDotexeは、Pythonで作成したプログラムを実行ファイル形式に
 2. py2exeのように、pydotexe.exeのsetup.pyを作成したい場合↓
 >pip install pydotexe
 
+# <setup.pyの書き方>
+
+pip install pydotexe のコマンドでインストールしたモジュールを使って、py2exeのようなsetup.pyを作ることができます。
+
+>import pydotexe.setup
+
+>build_set = pydotexe.setup.build("yourcode.py")
+
+>#build_set.hide_console = True
+
+>#build_set.icon = ""
+
+>build_set.start_build()
+
+
 # <サポート情報>
 
 ## Python

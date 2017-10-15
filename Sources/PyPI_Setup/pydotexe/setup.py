@@ -1,7 +1,7 @@
 import os, sys
 from pydotexe.private import install, check, start
 
-__version__ = "1.0.0"
+__version__ = "1.0.4"
 
 class build(object):
     ''' Build Python program setup-class. '''

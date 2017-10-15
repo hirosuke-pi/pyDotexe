@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='pydotexe',
-    version='1.0.3',
+    version='1.0.5',
     author='betacode_',
     author_email='betacode.net@gmail.com',
     description = 'pyDotexe is a program that freezes Python programs into stand-alone executables under Windows.',
