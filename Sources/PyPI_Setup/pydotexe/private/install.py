@@ -23,7 +23,7 @@ def install_pydotexe(save_dir, version):
             print("[+] pydotexe version detected: "+ ".".join(sp_ver))
         else:
             print("[-] pydotexe version mismatch: "+ ".".join(sp_ver))
-            print("[-] Please upgrade this setup_pydotexe module.")
+            print("    Please upgrade this setup_pydotexe module with pip.")
             return False
             
     except:
