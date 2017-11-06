@@ -3,3 +3,8 @@ C:\Users\hiroki\Documents\Visual Studio 2017\Projects\pyfApp\pyfApp\obj\Release\
 C:\Users\hiroki\Documents\Visual Studio 2017\Projects\pyfApp\pyfApp\bin\Release\Application_f.exe.config
 C:\Users\hiroki\Documents\Visual Studio 2017\Projects\pyfApp\pyfApp\bin\Release\Application_f.exe
 C:\Users\hiroki\Documents\Visual Studio 2017\Projects\pyfApp\pyfApp\obj\Release\Application_f.exe
+C:\Users\hiroki\Documents\Visual Studio 2017\Projects\App_NoOnefileMode\pyfApp\bin\Release\Application_f.exe.config
+C:\Users\hiroki\Documents\Visual Studio 2017\Projects\App_NoOnefileMode\pyfApp\bin\Release\Application_f.exe
+C:\Users\hiroki\Documents\Visual Studio 2017\Projects\App_NoOnefileMode\pyfApp\obj\Release\pyfApp.csprojResolveAssemblyReference.cache
+C:\Users\hiroki\Documents\Visual Studio 2017\Projects\App_NoOnefileMode\pyfApp\obj\Release\pyfApp.csproj.CoreCompileInputs.cache
+C:\Users\hiroki\Documents\Visual Studio 2017\Projects\App_NoOnefileMode\pyfApp\obj\Release\Application_f.exe

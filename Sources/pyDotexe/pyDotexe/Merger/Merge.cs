@@ -53,9 +53,8 @@ namespace pyDotexe.Merger
         private static byte[] build_header()
         {
             // Build header
-            byte[] header = Encoding.UTF8.GetBytes(mset.start_src + "|" + mset.start_bin + "|" + mset.version + "|" + mset.start_argv);
-            return Enumerable.Concat(new byte[] { 0xff }, Encoding.UTF8.GetBytes(Convert.ToBase64String(header))).ToArray();
-            
+            byte[] header = Encoding.UTF8.GetBytes(mset.start_src + "|" + mset.start_bin + "|" + mset.version +"|"+ mset.out_bin.ToString() + "|" + mset.start_argv);
+            return Enumerable.Concat(new byte[] { 0xff }, Encoding.UTF8.GetBytes(Convert.ToBase64String(header))).ToArray();         
         }
 
         private static void start_merge()

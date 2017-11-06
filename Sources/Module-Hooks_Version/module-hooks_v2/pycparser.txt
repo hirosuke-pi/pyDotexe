@@ -1,0 +1,2 @@
+[pyfile, \\pycparser\\lextab.py]
+[pyfile, \\pycparser\\yacctab.py]

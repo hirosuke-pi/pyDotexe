@@ -1,0 +1,5 @@
+[pydir, (PyQt4).*?(accessible)]
+[pydir, (PyQt4).*?(iconengines)]
+[pydir, (PyQt4).*?(imageformats)
+[pydir, (PyQt4).*?(inputmethods)
+[pydir, (PyQt4).*?(graphicssystems)]

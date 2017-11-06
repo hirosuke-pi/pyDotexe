@@ -44,7 +44,7 @@
  + コード圧縮機能追加 (--optimize)
 
 
-# [2017/10/15 - v1.0.0-Hydrogen : Standerd-Update]
+# [2017/10/15 - v1.0.0-Hydrogen]
  + *.dllファイル解析時のメモリ解放を最適化
  + module-hooksのサーバーを変更
  + 最低必須OSバージョンを、WindowsXPまで対応 (.NET Framework 4.0に対応)
@@ -61,3 +61,14 @@
  + 一部のコマンド名を変更
  + バグ修正・表示修正
 
+
+# [2017/11/07 - v2.0.0-Unity]
+ + モジュールローダー指定コマンドを廃止
+ + -pydirdir, -pydirfile, -pydir-regex, -pyfile-regexコマンドの廃止
+ + -pydir, -pyfileの引数を正規表現に統一
+ + Module-Hooksの大幅変更
+ + サーバー設定を変更
+ + モジュール検索設定の強化
+ + Pythonの未完全スタンドアロンファイル生成機能追加
+ + ファイル検索パフォーマンスを向上
+ + バグ修正

@@ -21,6 +21,7 @@ namespace pyApp
         public string delete_folder_path = "";
 
         public bool folder_active = false;
+        public bool start_out_bin = false;
 
         public BootSet()
         {

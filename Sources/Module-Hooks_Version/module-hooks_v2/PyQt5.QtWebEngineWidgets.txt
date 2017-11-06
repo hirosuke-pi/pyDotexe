@@ -1,0 +1,4 @@
+[pyfile, .*(\\PyQt5\\QtCore.py|\\PyQt5\\QtGui.py|\\PyQt5\\QtNetwork.py|\\PyQt5\\QtWebChannel.py|\\PyQt5\\QtWebEngineCore.py)]
+[pydir, \\QtWebEngineCore\\framework]
+[pydir, (PyQt5).*?(Versions)]
+[pydir, (PyQt5).*?(Resources)]

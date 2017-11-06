@@ -12,7 +12,7 @@ namespace pyDotexe
 {
     class Program
     {
-        static string version = "v1.0.0-Hydrogen";
+        static string version = "v2.0.0-Unity";
         static string py_surpport = "1.6.x, 2.1.x-2.7.x, 3.0.x-3.6.x";
         static string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location); // Local Path S
         static string my_path = Assembly.GetExecutingAssembly().Location;
@@ -65,23 +65,19 @@ namespace pyDotexe
                     else if (args[i] == "-import" | args[i] == "-i") bset.base_module.Add("import " + args[++i]); // Set imported Python modules.
                     else if (args[i] == "-pyfile" | args[i] == "-pf") bset.import_pyfile_list.AddRange(args[++i].Split(',')); // Set Python file name.
                     else if (args[i] == "-pydir" | args[i] == "-pd") bset.import_pydir_list.AddRange(args[++i].Split(',')); // Set Python folder name.
-                    else if (args[i] == "-pyfile-regex" | args[i] == "-pfr") bset.import_pyfilecmd_list.Add(args[++i]); // Set file search options.
-                    else if (args[i] == "-pydir-regex" | args[i] == "-pdr") bset.import_pydircmd_list.Add(args[++i]); // Set folder search options.
-                    else if (args[i] == "-pydirdir" | args[i] == "-pdd") bset.import_pydirdir_list.AddRange(args[++i].Split(',')); // Set only Python folder in folders name. 
-                    else if (args[i] == "-pydirfile" | args[i] == "-pdf") bset.import_pydirfile_list.AddRange(args[++i].Split(',')); // Set only Python folder in files name.
                     else if (args[i] == "-pymodule" | args[i] == "-pm") bset.add_pymodules_list.AddRange(args[++i].Split(',')); // Set Python module name.
                     else if (args[i] == "-resfile" | args[i] == "-rf") bset.resource_file.AddRange(args[++i].Split(',')); // Set resource file name.
                     else if (args[i] == "-resdir" | args[i] == "-rd") bset.resource_folder.AddRange(args[++i].Split(',')); // Set resource folder name.
-                    else if (args[i] == "-exclude" | args[i] == "-e") bset.except_file_list.Add(args[++i]); // Set excluding Python module file.
-                    else if (args[i] == "-loader" | args[i] == "-l") bset.except_file_list.Add(args[++i]); // Set own module loader
+                    else if (args[i] == "-exclude" | args[i] == "-e") bset.except_file_list.Add(args[++i]); // Set excluding Python module file.                    
                     else if (args[i] == "-pyver" | args[i] == "-pv") bset.pyver = args[++i];
                     else if (args[i].StartsWith("-comp")) bset.compress = int.Parse(args[i].Split('=')[1]); // Set compression levels.
 
                     else if (args[i] == "--no-cache") bset.cache = false; // Do not use cache.
-                    else if (args[i] == "--debug" ) bset.debug = true; // Use debug mode.
+                    else if (args[i] == "--debug") bset.debug = true; // Use debug mode.
                     else if (args[i] == "--dll-out") bset.dll_out = true; // Dll file out mode.
                     else if (args[i] == "--all-includes") bset.all_imports = true; // Include all python modules.
                     else if (args[i] == "--hide") bset.show_window = false; // Do not show Console.
+                    else if (args[i] == "--all-search") bset.all_search = true; // All module search.
                     else if (args[i] == "--research") bset.search_files = true; // More search modules mode.
                     else if (args[i] == "--zip-out") bset.zip_out = true; // Only output zip file.
                     else if (args[i] == "--wait-key") wait_key = true; // Wait for pressed any keys.
@@ -92,6 +88,7 @@ namespace pyDotexe
                     else if (args[i] == "--no-onefile") bset.one_file = false; // Do not make one file.
                     else if (args[i] == "--optimize") bset.optimize = true; // Optimize Python files
                     else if (args[i] == "--check-only") bset.check_only = true; // Check module list only
+                    else if (args[i] == "--no-standalone") bset.standalone = false;
                     else if (args[i] == "-build") { }
                     else Console.WriteLine("[!] No named command options: " + args[i]);
                     }
@@ -151,6 +148,7 @@ namespace pyDotexe
                     else if (args[i] == "-start-argv" | args[i] == "-sa") mset.start_argv = args[++i];
                     else if (args[i] == "--no-cache") mset.use_cache = false;
                     else if (args[i] == "--no-onefile") mset.onefile = false;
+                    else if (args[i] == "--out-bin") mset.out_bin = true;
                     else if (args[i] == "--wait-key") wait_key = true;
                     else if (args[i] == "--no-log") logger = false;
                     else if (args[i] == "-merge") { }
@@ -198,26 +196,25 @@ namespace pyDotexe
                 "pydotexe -build -src [SOURCE_PATH] (-py [PYTHON_FOLDER_PATH])\r\n" +
                 "         (-out [OUT_PATH]) (-icon [ICON_PATH]) (-argv [FIXED_ARGV(string)])\r\n" +
                 "         (-file [FILE_PATH]) (-dir [FOLDER_PATH]) (-import [MODULE_NAME])\r\n" +
-                "         (-pyfile [PYTHON_FILE_NAME]) (-pydir [PYTHON_FOLDER_NAME])\r\n" +
-                "         (-pydirfile [PYTHON_FOLDER_NAME]) (-pydirdir [PYTHON_FOLDER_NAME])\r\n"+
-                "         (-pyfile-regex [REGEX_DATA]) (-pydir-regex [REGEX_DATA]\r\n" +
+                "         (-pyfile [PYTHON_LIB_FILE]) (-pydir [PYTHON_LIB_FOLDER])\r\n" +
                 "         (-resfile [RESOUCE_FILE_NAME]) (-resdir [RESOURCE_FOLDER_NAME])\r\n" +
                 "         (-exclude [EXCLUDE_MODULE_REGEX]) (-pymodule [PYTHON_MODULE_NAME])\r\n" +
-                "         (-loader [SOURCE_PATH]) (-comp=[COMPRESS_LEVELS([LOW]0~9[HIGH])])\r\n" +
-                "         (--part-enc) (--zip-out) (--no-cache) (--check-only) (--no-rev)\r\n" +
-                "         (--debug) (--dll-out) (--no-hooks) (--all-includes) (--hide) \r\n" +
-                "         (--no-log) (--research) (--optimize) (--no-onefile) (--wait-key)\r\n\r\n" +
+                "         (-pyver [PYTHON_VERSION(int)]) (-comp=[COMPRESS_LEVELS(0~9)])\r\n" +
+                "         (--part-enc) (--zip-out) (--no-cache) (--hide) (--no-standalone)\r\n" +
+                "         (--check-only) (--no-rev) (--debug) (--dll-out) (--no-hooks) \r\n" +
+                "         (--no-log) (--research) (--optimize) (--no-onefile) (--wait-key)\r\n" +
+                "         (--all-includes) (--all-search) \r\n\r\n" +
                 "         -merge -src [SOURCE_PATH(ZIP,FOLDER_PATH)] -start-bin [FILE_NAME(EXE)]\r\n" +
                 "         (-start-src [FILE_NAME]) (-icon [ICON_PATH]) (-ver [VERSION(int)])\r\n" +
                 "         (-start-argv [FIXED_ARGV(string)]) (-out [OUT_PATH])\r\n" +
-                "         (--no-cache) (--wait-key) (--no-log) (--no-onefile)\r\n\r\n" +
+                "         (--no-cache) (--wait-key) (--no-log) (--no-onefile) (--out-bin)\r\n\r\n" +
                 "         -hooks (-update [FOLDER_PATH]) \r\n" +
                 "         (-add [MODULE_NAME] [ADD_COMMAND] [MODULE_DATA])\r\n" +
                 "         (--upgrade) (--upgrade-clean) (--clear) (--wait-key) (--no-log)\r\n\r\n" +
                 "         -help (Show pyDotexe help.)\r\n\r\n" +
                 "         -version (Show pyDotexe version    : " + version + ")\r\n" +
                 "                  (Supported Python version : " + py_surpport + ")\r\n" +
-                "                  (Project: https://github.com/betacode-project/pyDotexe)");
+                "                  (Project: https://github.com/betacode-projects/pyDotexe)");
         }
 
         static void Main_make_log(string[] args, string filename)

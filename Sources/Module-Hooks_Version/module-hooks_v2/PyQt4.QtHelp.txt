@@ -1,0 +1,1 @@
+[pyfile, .*(\\PyQt4\\QtCore.py|\\PyQt4\\QtGui.py|\\PyQt4\\QtSql.py|\\PyQt4\\QtNetwork.py)]

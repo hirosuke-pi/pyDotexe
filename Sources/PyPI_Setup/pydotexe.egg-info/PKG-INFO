@@ -1,11 +1,12 @@
 Metadata-Version: 1.1
 Name: pydotexe
-Version: 1.0.5
+Version: 2.0.0
 Summary: pyDotexe is a program that freezes Python programs into stand-alone executables under Windows.
 Home-page: https://github.com/betacode-project/pyDotexe
 Author: betacode_
 Author-email: betacode.net@gmail.com
 License: MIT
+Description-Content-Type: UNKNOWN
 Description: UNKNOWN
 Platform: Windows
 Classifier: Environment :: Console

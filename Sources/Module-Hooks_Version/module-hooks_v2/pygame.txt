@@ -1,0 +1,1 @@
+[pyfile, \\pygame\\_view.py]

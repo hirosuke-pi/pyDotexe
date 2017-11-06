@@ -15,7 +15,6 @@ namespace pyDotexe
         public string icon_path = "";
         public string default_argv = "";
         public string hooks_path = "";
-        public string module_loader = "";
         public string pyver = "";
         public bool cache = true;
         public bool debug = false;
@@ -30,6 +29,8 @@ namespace pyDotexe
         public bool hooks = true;
         public bool check_only = false;
         public bool optimize = false;
+        public bool all_search = false;
+        public bool standalone = true;
         public int compress = 9;
 
         public string default_src_ex = ".py";
@@ -45,6 +46,7 @@ namespace pyDotexe
         public string default_python_bin { get; set; }
         public string python_dll { get; set; }
         public string python_ver_dll { get; set; }
+        public string python_scripts { get; set; }
 
         public List<string> base_module = new List<string>();
         public List<string> module_path = new List<string>();
@@ -57,10 +59,6 @@ namespace pyDotexe
         public List<string> dll_modules = new List<string>();
         public List<string> import_pyfile_list = new List<string>();
         public List<string> import_pydir_list = new List<string>();
-        public List<string> import_pydirfile_list = new List<string>();
-        public List<string> import_pydirdir_list = new List<string>();
-        public List<string> import_pyfilecmd_list = new List<string>();
-        public List<string> import_pydircmd_list = new List<string>();
         public List<string> add_pymodules_list = new List<string>();
         public List<string> resource_file = new List<string>();
         public List<string> resource_folder = new List<string>();
@@ -97,11 +95,7 @@ namespace pyDotexe
                 pymodule_to_pyfiledir(lib_name);
 
             // Set any paths
-            if (module_loader == "")
-                module_load_path = source_folder_path + @"\module_loader_pyDotexe.py";
-            else
-                module_load_path = module_loader;
-
+            module_load_path = source_folder_path + @"\module_loader_pyDotexe.py";
             python_binary_path = python_path + @"\python.exe";
             tmp_folder_path = Path.GetTempPath() + @"pyDotexe_cache";
             python_lib_path = python_path + @"\lib";
@@ -113,6 +107,7 @@ namespace pyDotexe
                 hooks = Hooker.Hook.Upgrade(path);
             }
 
+            if (!standalone) { hooks = false; dll_out = false; search_files = false; zip_out = false; all_encodes = false; all_imports = false; }
             if (!one_file) { dll_out = false; zip_out = false; }
             if (show_window) default_python_bin = python_binary_path;
             else default_python_bin = python_path + @"\pythonw.exe";
@@ -175,7 +170,7 @@ namespace pyDotexe
         /// <param name="lib_name"></param>
         public void pymodule_to_pyfiledir(string lib_name)
         {
-            string name = @"\" + lib_name.Replace(".", @"\");
+            string name = @"\\" + lib_name.Replace(".", @"\\");
             import_pyfile_list.AddRange(new string[] { name + ".py", name + ".pyd" });
             import_pydir_list.Add(name);
         }
@@ -191,6 +186,7 @@ namespace pyDotexe
                 python_dll = python_path + @"\python" + py_version[0] + ".dll";
                 python_ver_dll = python_path + @"\python" + py_version + ".dll";
                 base_module.Add("import os, sys, ctypes, codecs");
+                python_scripts = python_path + @"\Scripts";
             }
             else
             {             
@@ -204,13 +200,23 @@ namespace pyDotexe
                 {
                     base_module.Add("import os, sys, ctypes, codecs");
                     if (int.Parse(py_version) >= 32)
+                    {
                         // Python 3.2.x ~ Python 3.4.x
                         python_dll = python_path + @"\DLLs\python" + py_version[0] + ".dll";
+                    }
                     else
+                    {
                         // Python 2.5.x ~ 2.7.x
                         python_dll = null;
+                        if (int.Parse(py_version) == 27)
+                            python_scripts = python_path + @"\Scripts";
+                    }
                 }
-                else base_module.Add("import os, sys"); // ~ Python 2.5
+                else
+                {
+                    python_scripts = python_path + @"\Tools\Scripts";
+                    base_module.Add("import os, sys"); // ~ Python 2.5
+                }
             }      
         }
     }

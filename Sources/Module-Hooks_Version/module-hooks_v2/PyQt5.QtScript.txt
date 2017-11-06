@@ -1,0 +1,2 @@
+[pyfile, \\PyQt5\\QtCore.py]
+[pydir, (PyQt5).*?(script)]

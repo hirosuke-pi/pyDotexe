@@ -18,6 +18,7 @@ namespace pyDotexe
         public string output_path = "";
         public bool use_cache = true;
         public bool onefile = true;
+        public bool out_bin = false;
 
         public bool Decision()
         {
@@ -67,6 +68,7 @@ namespace pyDotexe
             mset.output_path = bset.output_path;
             mset.use_cache = bset.cache;
             mset.onefile = bset.one_file;
+            mset.out_bin = !bset.standalone;
             mset.Decision();
 
             return mset;

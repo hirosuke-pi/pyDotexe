@@ -4,3 +4,9 @@ C:\Users\hiroki\Documents\Visual Studio 2017\Projects\pywApp\pywApp\bin\Release\
 C:\Users\hiroki\Documents\Visual Studio 2017\Projects\pywApp\pywApp\obj\Release\Application.exe
 C:\Users\hiroki\Documents\Visual Studio 2017\Projects\pywApp\pywApp\obj\Release\pywApp.csproj.CoreCompileInputs.cache
 C:\Users\hiroki\Documents\Visual Studio 2017\Projects\pywApp\pywApp\bin\Release\ICSharpCode.SharpZipLib.dll
+C:\Users\hiroki\Documents\Visual Studio 2017\Projects\App_NoCacheMode\pywApp\bin\Release\Application.exe.config
+C:\Users\hiroki\Documents\Visual Studio 2017\Projects\App_NoCacheMode\pywApp\bin\Release\Application.exe
+C:\Users\hiroki\Documents\Visual Studio 2017\Projects\App_NoCacheMode\pywApp\bin\Release\ICSharpCode.SharpZipLib.dll
+C:\Users\hiroki\Documents\Visual Studio 2017\Projects\App_NoCacheMode\pywApp\obj\Release\pywApp.csprojResolveAssemblyReference.cache
+C:\Users\hiroki\Documents\Visual Studio 2017\Projects\App_NoCacheMode\pywApp\obj\Release\pywApp.csproj.CoreCompileInputs.cache
+C:\Users\hiroki\Documents\Visual Studio 2017\Projects\App_NoCacheMode\pywApp\obj\Release\Application.exe

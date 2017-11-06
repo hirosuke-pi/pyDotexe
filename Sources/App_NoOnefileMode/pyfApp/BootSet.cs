@@ -15,6 +15,7 @@ namespace pyfApp
         public string default_argv = "";
         public string cachefile = "";
         public string dir_path = "";
+        public bool start_out_bin = false;
 
         public BootSet(string main_dir_path)
         {

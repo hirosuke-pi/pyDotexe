@@ -1,7 +1,7 @@
 import os, sys
 from pydotexe.private import install, check, start
 
-__version__ = "1.0.4"
+__version__ = "2.0.0"
 
 class build(object):
     ''' Build Python program setup-class. '''
@@ -13,7 +13,6 @@ class build(object):
         self.argv = ""
         self.icon = ""
         self.py_version = ""
-        self.module_loader = ""
 
         # Set file or folder lists
         self.import_list = []
@@ -23,10 +22,6 @@ class build(object):
         self.dir_list = []
         self.pyfile = []
         self.pydir = []
-        self.pydirfile = []
-        self.pydirdir = []
-        self.pyfile_regex = []
-        self.pydir_regex = []
         self.exclude = []
         self.resfile = []
         self.resdir = []
@@ -49,6 +44,8 @@ class build(object):
         self.optimize = False
         self.one_file = True
         self.all_includes = False
+        self.all_search = False
+        self.standalone = True
 
     def get_argv_data(self):
         ''' Get pydotexe's argv string data '''
@@ -66,10 +63,6 @@ class build(object):
         if (len(self.dir_list) != 0): argv = argv + " -dir "+ ",".join(self.dir_list)
         if (len(self.pyfile) != 0): argv = argv + " -pyfile "+ ",".join(self.pyfile)
         if (len(self.pydir) != 0): argv = argv + " -pydir "+ ",".join(self.pydir)
-        if (len(self.pydirfile) != 0): argv = argv + " -pydirfile "+ ",".join(self.pydirfile)
-        if (len(self.pydirdir) != 0): argv = argv + " -pydirdir "+ ",".join(self.pydirdir)
-        if (len(self.pyfile_regex) != 0): argv = argv + " -pyfile-regex "+ " -pyfile-regex ".join(self.pyfile_regex)
-        if (len(self.pydir_regex) != 0): argv = argv + " -pydir-regex "+ " -pydir-regex ".join(self.pydir_regex)
         if (len(self.pydir_regex) != 0): argv = argv + " -exclude "+ " -exclude ".join(self.pydir_regex)
         if (len(self.resfile) != 0): argv = argv + " -resfile "+ ",".join(self.resfile)
         if (len(self.resdir) != 0): argv = argv + " -resdir "+ ",".join(self.resdir)
@@ -89,6 +82,8 @@ class build(object):
         if (self.optimize): argv = argv + " --optimize"
         if (not(self.one_file)): argv = argv + " --no-onefile"
         if (self.all_includes): argv = argv + " --all-includes"
+        if (self.all_search): argv = argv + "--all-search"
+        if (not(self.standalone)): argv = argv + "--no-standalone"
 
         return argv
 

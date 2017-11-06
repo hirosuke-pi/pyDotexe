@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Text.RegularExpressions;
 
-namespace pyDotexe.Optimize
+namespace pyDotexe.Codes
 {
-    public class Codes
+    public class Optimize
     {
         /// <summary>
         /// Start optimize the selected source code.
@@ -44,6 +44,7 @@ namespace pyDotexe.Optimize
             list_data = new List<string>(optcode_trim(raw_data));  // Optimize source code comments.
             list_data = new List<string>(remove_blanks(list_data)); // Optimize blanks.
             list_data = new List<string>(remove_spaces(list_data)); // Optimize spaces.
+            //list_data = new List<string>(add_pass(list_data)); // Add 'pass' functions.
             GC.Collect(); // Free memory.
         }
 
@@ -54,7 +55,7 @@ namespace pyDotexe.Optimize
         /// <returns></returns>
         private static List<string> optcode_trim(string raw_data)
         {
-            //raw_data = Regex.Replace(raw_data, @"([\r\n]"+"|^)(\"\"\"|''').*?(\"\"\"|''')", "", RegexOptions.Singleline);
+            //raw_data = Regex.Replace(raw_data, "(\"\"\"|''').*?(\"\"\"|''')", "", RegexOptions.Singleline);
             raw_data = Regex.Replace(raw_data, "(?m)^ *#.*\n?", "", RegexOptions.Multiline); // Delete '#' comments
             return new List<string>(raw_data.Split(new string[] { "\n" }, StringSplitOptions.None));
         }
@@ -123,5 +124,81 @@ namespace pyDotexe.Optimize
             }
             return num;
         }
+
+        private static bool is_alphabet(string str)
+        {
+            if (string.IsNullOrEmpty(str)) { return false; }
+
+            foreach (char c in str)
+            {
+                if (!Char.IsLetter(c))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        /*
+        private static List<string> add_pass(List<string> list_data)
+        {
+            List<string> tmp_list = new List<string>();
+            bool def_flag = false;
+            bool class_flag = false;
+            int blanks = 0;
+            int blanks_flag_num = 0;
+            foreach (string data_raw in list_data)
+            {
+                blanks = get_space_num(data_raw);
+                string data = data_raw.Replace(" ", "");
+                if ((blanks_flag_num >= blanks) & def_flag)
+                {
+                    tmp_list.Add(new string(' ', blanks_flag_num+1) +"pass"); // Add 'pass'
+                    def_flag = false;
+                    class_flag = false;
+                }
+                else if (data.StartsWith("def") & data.EndsWith(":"))
+                {
+                    def_flag = true;
+                    class_flag = false;
+                    blanks_flag_num = get_space_num(data_raw);
+                }
+                else if ((blanks_flag_num >= blanks) & class_flag)
+                {
+                    tmp_list.Add(new string(' ', blanks_flag_num + 1) + "pass"); // Add 'pass'
+                    def_flag = false;
+                    class_flag = false;
+                }
+                else if (data.StartsWith("class") & data.EndsWith(":"))
+                {
+                    def_flag = false;
+                    class_flag = true;
+                    blanks_flag_num = get_space_num(data_raw);
+                }
+                else if (data.EndsWith("=") & !data.EndsWith("=="))
+                {
+                    def_flag = false;
+                    class_flag = false;
+                    tmp_list.Add(data_raw + "\"\"");
+                    continue;
+                }
+                else
+                {
+                    class_flag = false;
+                    def_flag = false;
+                }
+
+                if (is_alphabet(data) & (data.Length <= 2)) continue;
+                if (data.EndsWith(",)"))
+                {
+                    tmp_list.Add(data_raw.Remove(data_raw.Length-1) +"\"\")");
+                }
+
+                tmp_list.Add(data_raw); // Add list data.
+            }
+
+            return tmp_list;
+        }
+        */
     }
 }

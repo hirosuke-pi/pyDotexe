@@ -39,10 +39,14 @@ namespace pyfApp
             try
             {
                 Process pro = null;
-                if (bset.start_filename == bset.python_bin)
-                    pro = Process.Start(bset.dir_path + @"\" + bset.python_bin, bset.default_argv + string.Join(" ", args));
+                string start_bin = "";
+                if (bset.start_out_bin) start_bin = bset.dir_path + @"\" + bset.start_filename;
+                else start_bin = bset.dir_path + @"\" + bset.python_bin;
+
+                if ((bset.start_filename == bset.python_bin) | bset.start_out_bin)
+                    pro = Process.Start(start_bin, bset.default_argv + string.Join(" ", args));
                 else
-                    pro = Process.Start(bset.dir_path + @"\" + bset.python_bin, "\""+ bset.dir_path + @"\" + bset.start_filename + "\" " + bset.default_argv + string.Join(" ", args));
+                    pro = Process.Start(start_bin, "\""+ bset.dir_path + @"\" + bset.start_filename + "\" " + bset.default_argv + string.Join(" ", args));
             }
             catch (Exception ex)
             {
@@ -69,6 +73,7 @@ namespace pyfApp
                         bset.start_filename = sp_data[0]; // Get starting file name.
                         bset.python_bin = sp_data[1]; // Get Python binary file name.
                         bset.python_ver = sp_data[2]; // Get Python version data.
+                        bset.start_out_bin = bool.Parse(sp_data[3]); // Get start out binary.
                         if (sp_data[3] != "") bset.default_argv = sp_data[3] + " "; // Get fixed argv data.
                         break;
                     }

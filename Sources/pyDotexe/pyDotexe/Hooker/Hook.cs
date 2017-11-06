@@ -24,7 +24,7 @@ namespace pyDotexe.Hooker
                 {
                     // Found module-hooks folder.
                     Console.WriteLine("\r\n[+] Updating hook-files...");
-                    foreach (string filename in Directory.GetFiles(dirpath, "*", SearchOption.AllDirectories))
+                    foreach (string filename in Directory.EnumerateFiles(dirpath, "*", SearchOption.AllDirectories))
                     {
                         try
                         {
@@ -119,7 +119,7 @@ namespace pyDotexe.Hooker
             try
             {
                 if (clean) Directory.Delete(path + @"\module-hooks", true);
-                string url = "https://github.com/betacode-project/pyDotexe/raw/master/Binary/Latest/module-hooks.zip";
+                string url = "https://github.com/betacode-projects/pyDotexe/raw/master/Binary/Latest/module-hooks.zip";
                 Console.WriteLine("[+] Downloading module-hooks data...");
                 Console.WriteLine("[+] " + url);
                 string zip_path = path + @"\update-hooks.zip";
@@ -178,15 +178,13 @@ namespace pyDotexe.Hooker
             if (destDirName[destDirName.Length - 1] != Path.DirectorySeparatorChar)
                 destDirName = destDirName + Path.DirectorySeparatorChar;
 
-            string[] files = Directory.GetFiles(sourceDirName);
-            foreach (string file in files)
+            foreach (string file in Directory.EnumerateFiles(sourceDirName))
             {
                 File.Copy(file, destDirName + System.IO.Path.GetFileName(file), true);
                 Console.WriteLine(" + "+ file);
             }
 
-            string[] dirs = Directory.GetDirectories(sourceDirName);
-            foreach (string dir in dirs)
+            foreach (string dir in Directory.GetDirectories(sourceDirName))
                 copydir(dir, destDirName + Path.GetFileName(dir));
         }
     }

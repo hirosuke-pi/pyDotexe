@@ -40,17 +40,19 @@ namespace pyDotexe.Builder
             try
             {
                 bset = BuildSettings;
+                if (!bset.standalone)
+                {
+                    bset.module_path.Add(bset.source_path);
+                    bset.except_file_list.Add(bset.python_path.Replace(@"\", @"\\"));
+                }
+
                 Console.WriteLine("[+] Getting imported default modules path...");
                 get_import_modules_name(); // Get imported module names by source code.
-                if (bset.module_loader == "") make_module_loader(); // Make module loader file. (pyDotexe_module_loader.py)
+                make_module_loader(); // // Make module loader file. (pyDotexe_module_loader.py)
                 get_import_file_path(); // Start module loader by Python-Shell and Get module paths.
 
                 Console.WriteLine("\r\n[+] Searching selected modules...");
                 if (bset.hooks) check_copy_hooks(); // Check some modules.
-                import_pydir(); // Search selected python folder modules.
-                import_pyfile(); // Search selected python file modules.
-                import_pydirfile(); // Search selected python folder in file modules.
-                import_pydirdir(); // Search selected python folder in folder modules.
                 import_pyfilecmd(); // Search selected python file by Regex.
                 import_pydircmd(); // Search seletcted python folder by Regex.
 
@@ -75,14 +77,13 @@ namespace pyDotexe.Builder
 
                     Console.WriteLine("\r\n[+] Imported module name list:");
                     foreach (string suc_module in bset.module_hooks_list)
-                        Console.Write(suc_module +", ");
+                        Console.Write(suc_module + ", ");
 
                     Console.WriteLine("\r\n\r\n[-] Could not get module path list:");
                     foreach (string err_module in bset.error_modules_list)
                         Console.Write(err_module + ", ");
 
-                    if (bset.module_loader == "")
-                        Console.WriteLine("\r\n\r\n\a[+] Get module Python function: sys.modules.keys()");
+                    Console.WriteLine("\r\n\r\n\a[+] Get module Python function: sys.modules.keys()");
                     Console.WriteLine("[+] Completed getting Python module and library files.");
                     return false;
                 }
@@ -110,7 +111,8 @@ namespace pyDotexe.Builder
                 try
                 {
                     File.Delete(bset.module_load_path);
-                }catch { }
+                }
+                catch { }
             }
             return false;
         }
@@ -200,7 +202,7 @@ namespace pyDotexe.Builder
                 try
                 {
                     // Use all encodings.
-                    foreach (string enc_path in Directory.GetFiles(bset.python_lib_path + @"\encodings", "*.py", SearchOption.AllDirectories))
+                    foreach (string enc_path in Directory.EnumerateFiles(bset.python_lib_path + @"\encodings", "*.py", SearchOption.AllDirectories))
                     {
                         Console.WriteLine(" + " + enc_path);
                         bset.module_path.Add(enc_path);
@@ -214,7 +216,7 @@ namespace pyDotexe.Builder
                 {
                     try
                     {
-                        foreach (string add_modules_path in Directory.GetFiles(add_modules, "*", SearchOption.AllDirectories))
+                        foreach (string add_modules_path in Directory.EnumerateFiles(add_modules, "*", SearchOption.AllDirectories))
                         {
                             Console.WriteLine(" + " + add_modules_path);
                             bset.module_path.Add(add_modules_path);
@@ -246,7 +248,7 @@ namespace pyDotexe.Builder
         {
             // Search module-hooks.
             List<string> tmp_module_list = new List<string>();
-            foreach (string hook_file in Directory.GetFiles(bset.hooks_path, "*", SearchOption.AllDirectories))
+            foreach (string hook_file in Directory.EnumerateFiles(bset.hooks_path, "*", SearchOption.AllDirectories))
             {
                 foreach (string module_name in bset.module_hooks_list)
                 {
@@ -299,17 +301,6 @@ namespace pyDotexe.Builder
                                 else if (cmd == "dir") bset.add_modules.AddRange(names);
                                 else if (cmd == "pyfile") bset.import_pyfile_list.AddRange(names);
                                 else if (cmd == "pydir") bset.import_pydir_list.AddRange(names);
-                                else if (cmd == "pydir-regex")
-                                {
-                                    string argv = raw_data.Substring(raw_data.IndexOf(',')+1).TrimEnd(']').TrimStart(' ');
-                                    bset.import_pydircmd_list.Add(argv);
-                                }
-                                else if (cmd == "pyfile-regex")
-                                {
-                                    string argv = raw_data.Substring(raw_data.IndexOf(',')+1).TrimEnd(']').TrimStart(' ');
-                                    bset.import_pyfilecmd_list.Add(argv);
-                                }
-                                else if (cmd == "pydirfile") bset.import_pydirfile_list.AddRange(names);
                                 else if (cmd == "pymodule") bset.pymodule_to_pyfiledir(name);
                                 else if (cmd == "exclude")
                                 {
@@ -325,38 +316,10 @@ namespace pyDotexe.Builder
             }
         }
 
-        /// <summary>
-        /// Get imported Python module path by file names
-        /// </summary>
-        private static void import_pydirfile()
-        {
-            // -import param
-            List<Task> pydir_task = new List<Task>();
-            foreach (string module_name in distinct_list(bset.import_pydirfile_list))
-            {
-                pydir_task.Add(Task.Factory.StartNew(new Action(() =>
-                {
-                    foreach (string folder_path in Directory.GetDirectories(bset.python_path, "*", SearchOption.AllDirectories))
-                    {
-                        if (folder_path.EndsWith(module_name.Replace("^", "")))
-                        {
-                            foreach (string add_modules_path in Directory.GetFiles(folder_path, "*", SearchOption.AllDirectories))
-                            {
-                                Console.WriteLine(" + " + add_modules_path);
-                                bset.module_path.Add(add_modules_path);
-                            }
-                            if (!module_name.EndsWith("^")) break;
-                        }
-                    }
-                })));
-            }
-            Task.WaitAll(pydir_task.ToArray());
-        }
-
         // Get pydir in folders and files
         private static void get_pydirfile(string folder_path)
-        {
-            foreach (string add_modules_path in Directory.GetFileSystemEntries(folder_path, "*", SearchOption.AllDirectories))
+        {           
+            foreach (string add_modules_path in Directory.EnumerateFileSystemEntries(folder_path, "*", SearchOption.AllDirectories))
             {
                 if (Directory.Exists(add_modules_path))
                 {
@@ -370,94 +333,28 @@ namespace pyDotexe.Builder
             }
         }
 
-        /// <summary>
-        /// Get imported Python module folder path by names
-        /// </summary>
-        private static void import_pydir()
-        {
-            // -import param
-            List<Task> pydir_task = new List<Task>();
-            foreach (string module_name in distinct_list(bset.import_pydir_list))
-            {
-                pydir_task.Add(Task.Factory.StartNew(new Action(() =>
-                {
-                    foreach (string folder_path in Directory.GetDirectories(bset.python_path, "*", SearchOption.AllDirectories))
-                    {
-                        if (folder_path.EndsWith(module_name.Replace("^", "")))
-                        {
-                            get_pydirfile(folder_path);
-                            if (!module_name.EndsWith("^")) break;
-                        }
-                    }
-                })));
-            }
-            Task.WaitAll(pydir_task.ToArray());
-        }
-
-        private static void import_pydirdir()
-        {
-            // -import param
-            if (bset.import_pydirdir_list.Count != 0)
-            {
-                List<Task> pydir_task = new List<Task>();
-                foreach (string module_name in distinct_list(bset.import_pydirdir_list))
-                {
-                    pydir_task.Add(Task.Factory.StartNew(new Action(() =>
-                    {
-                        foreach (string folder_path in Directory.GetDirectories(bset.python_path, "*", SearchOption.AllDirectories))
-                        {
-                            if (folder_path.EndsWith(module_name.Replace("^", "")))
-                            {
-                                foreach (string add_modules_dir in Directory.GetDirectories(folder_path, "*", SearchOption.AllDirectories))
-                                {
-                                    get_pydirfile(add_modules_dir);
-                                }
-                                if (!module_name.EndsWith("^")) break;
-                            }
-                        }
-                    })));
-                }
-                Task.WaitAll(pydir_task.ToArray());
-            }
-        }
-
-        /// <summary>
-        ///  Get imported Python module by folder names
-        /// </summary>
-        private static void import_pyfile()
-        {
-            List<Task> pyfile_task = new List<Task>();
-            foreach (string module_name in distinct_list(bset.import_pyfile_list))
-            {
-                pyfile_task.Add(Task.Factory.StartNew(new Action(() =>
-                {
-                    foreach (string modules_path in Directory.GetFiles(bset.python_path, "*", SearchOption.AllDirectories))
-                    {
-                        if (modules_path.EndsWith(module_name.Replace("^", "")))
-                        {
-                            Console.WriteLine(" + " + modules_path);
-                            bset.module_path.Add(modules_path);
-                            if (!module_name.EndsWith("^")) break;
-                        }
-                    }
-                })));
-            }
-            Task.WaitAll(pyfile_task.ToArray());
-        }
-
         private static void import_pyfilecmd()
         {
             List<Task> pyfile_task = new List<Task>();
-            foreach (string regex_data in distinct_list(bset.import_pyfilecmd_list))
+            foreach (string regex_data in distinct_list(bset.import_pyfile_list))
             {
                 pyfile_task.Add(Task.Factory.StartNew(new Action(() =>
                 {
-                    foreach (string file in Directory.GetFiles(bset.python_path, "*", SearchOption.AllDirectories))
+                    foreach (string file in Directory.EnumerateFiles(bset.python_path, "*", SearchOption.AllDirectories))
                     {
-                        if (Regex.IsMatch(file, regex_data))
+                        try
                         {
-                            bset.module_path.Add(file);
-                            Console.WriteLine(" + "+ file);
+                            if (Regex.IsMatch(file, regex_data))
+                            {
+                                bset.module_path.Add(file);
+                                Console.WriteLine(" + " + file);
+                                if (!bset.all_search) break;
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            bset.copy_error.Add(ex.Message);
+                            break;
                         }
                     }
                 })));
@@ -469,15 +366,24 @@ namespace pyDotexe.Builder
         private static void import_pydircmd()
         {
             List<Task> pydir_task = new List<Task>();
-            foreach (string regex_data in distinct_list(bset.import_pydircmd_list))
+            foreach (string regex_data in distinct_list(bset.import_pydir_list))
             {
                 pydir_task.Add(Task.Factory.StartNew(new Action(() =>
                 {
-                    foreach (string folder in Directory.GetDirectories(bset.python_path, "*", SearchOption.AllDirectories))
+                    foreach (string folder in Directory.EnumerateDirectories(bset.python_path, "*", SearchOption.AllDirectories))
                     {
-                        if (Regex.IsMatch(folder, regex_data))
+                        try
                         {
-                            get_pydirfile(folder);
+                            if (Regex.IsMatch(folder, regex_data))
+                            {
+                                get_pydirfile(folder);
+                                if (!bset.all_search) break;
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            bset.copy_error.Add(folder + "\r\n   @" + ex.Message);
+                            break;
                         }
                     }
                 })));
@@ -560,10 +466,18 @@ namespace pyDotexe.Builder
             {
                 foreach (string regex_data in bset.except_file_list)
                 {
-                    if (Regex.IsMatch(file_name, regex_data))
+                    try
                     {
-                        Console.WriteLine(" - " + file_name);
-                        include = false;
+                        if (Regex.IsMatch(file_name, regex_data))
+                        {
+                            Console.WriteLine(" - " + file_name);
+                            include = false;
+                            break;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        bset.copy_error.Add(regex_data + "\r\n   @" + ex.Message);
                         break;
                     }
                 }
@@ -646,7 +560,7 @@ namespace pyDotexe.Builder
             
             foreach (string pyd_folder in pyd_folders)
             {
-                foreach (string folder_path in Directory.GetDirectories(pyd_folder, "*", SearchOption.AllDirectories))
+                foreach (string folder_path in Directory.EnumerateDirectories(pyd_folder, "*", SearchOption.AllDirectories))
                 {
                     all_folders.Add(folder_path);
                 }

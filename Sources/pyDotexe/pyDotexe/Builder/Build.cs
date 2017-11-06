@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Diagnostics;
 
 namespace pyDotexe.Builder
 {
@@ -46,15 +47,18 @@ namespace pyDotexe.Builder
             try
             {
                 bset = BuildSettings;
-                if (bset.all_imports)
+                if (bset.standalone)
                 {
-                    Console.WriteLine("\r\n[+] Copying all modules file...");
-                    copy_all_modules(); // Import all modules.
-                }
-                else
-                {
-                    Console.WriteLine("\r\n[+] Copying Python libraries and compiler...");
-                    import_dll_compiler(); // Copy python libraries to TMP folder.         
+                    if (bset.all_imports)
+                    {
+                        Console.WriteLine("\r\n[+] Copying all modules file...");
+                        copy_all_modules(); // Import all modules.
+                    }
+                    else
+                    {
+                        Console.WriteLine("\r\n[+] Copying Python libraries and compiler...");
+                        import_dll_compiler(); // Copy python libraries to TMP folder.         
+                    }
                 }
 
                 Console.WriteLine("\r\n[+] Copying imported modules...");
@@ -70,17 +74,27 @@ namespace pyDotexe.Builder
                 if (bset.debug) // Debug mode only.
                 {
                     Console.WriteLine("\a\r\n[+] Debug path and command-options extracted. You can start in Command-Lines.");
-                    Console.WriteLine("[*] \"" + bset.tmp_module_path + @"\" + Path.GetFileName(bset.default_python_bin) + "\" \""
-                        + bset.tmp_module_path + @"\" + Path.GetFileNameWithoutExtension(bset.source_path) + bset.default_src_ex + "\"");
+
+                    if (bset.standalone)
+                    {
+                        Console.WriteLine("[*] \"" + bset.tmp_module_path + @"\" + Path.GetFileName(bset.default_python_bin) + "\" \""
+                            + bset.tmp_module_path + @"\" + Path.GetFileNameWithoutExtension(bset.source_path) + bset.default_src_ex + "\"");
+                    }
+                    else
+                    {
+                        Console.WriteLine("[*] \"" + bset.tmp_module_path + @"\" + Path.GetFileNameWithoutExtension(bset.source_path) + bset.default_src_ex + "\"");
+                    }
                     return false;
                 }
 
                 if (!bset.zip_out & bset.add_fixed) add_fixes_argv_path(); // Add file path fixed.
+
                 if (bset.optimize)
                 {
                     Console.WriteLine("[+] Optimizing Python modules...");
                     optimize_code_start();
                 }
+
                 Console.WriteLine("[+] Compiling imported modules...");
                 replace_compile_file(); // Replace default source codes file to compiled file.
 
@@ -276,8 +290,7 @@ namespace pyDotexe.Builder
             if (destDirName[destDirName.Length - 1] != Path.DirectorySeparatorChar)
                 destDirName = destDirName + Path.DirectorySeparatorChar;
 
-            string[] files = Directory.GetFiles(sourceDirName);
-            foreach (string file in files)
+            foreach (string file in Directory.EnumerateFiles(sourceDirName, "*", SearchOption.AllDirectories))
             {
                 try
                 {
@@ -288,9 +301,8 @@ namespace pyDotexe.Builder
                     bset.copy_error.Add(file + "\r\n   " + ex.Message);
                 }
             }
-
-            string[] dirs = Directory.GetDirectories(sourceDirName);
-            foreach (string dir in dirs)
+            
+            foreach (string dir in Directory.EnumerateDirectories(sourceDirName))
                 copy_folder(dir, destDirName + Path.GetFileName(dir));
         }
 
@@ -328,10 +340,15 @@ namespace pyDotexe.Builder
 
         private static void optimize_code_start()
         {
-            foreach (string tmp_path in Directory.GetFiles(bset.tmp_folder_path, "*.py", SearchOption.AllDirectories))
+            List<Task> tmp_taskList = new List<Task>();
+            foreach (string tmp_path in Directory.EnumerateFiles(bset.tmp_folder_path, "*.py", SearchOption.AllDirectories))
             {
-                Optimize.Codes.Start(tmp_path);
+                tmp_taskList.Add(Task.Factory.StartNew(() =>
+                {
+                   Codes.Optimize.Start(tmp_path);
+                }));
             }
+            Task.WaitAll(tmp_taskList.ToArray());
         }
 
         /// <summary>
@@ -391,14 +408,11 @@ namespace pyDotexe.Builder
         /// </summary>
         private static void start_replace_py2()
         {
-            string[] folders = Directory.GetDirectories(bset.tmp_folder_path, "*", SearchOption.AllDirectories);
-            foreach (string folder_path in folders)
+            foreach (string folder_path in Directory.EnumerateDirectories(bset.tmp_folder_path, "*", SearchOption.AllDirectories))
             {
                 try
                 {
-                    string[] files = Directory.GetFiles(folder_path, "*.pyc", SearchOption.AllDirectories);
-                    if (files.Length == 0) files = Directory.GetFiles(folder_path, "*.pyo", SearchOption.AllDirectories);
-                    foreach (string compiled_file in files)
+                    foreach (string compiled_file in Directory.EnumerateFiles(folder_path, "*.pyc", SearchOption.AllDirectories))
                     {
                         bset.default_src_ex = Path.GetExtension(compiled_file);
                         string delete_file = Path.GetDirectoryName(compiled_file) + @"\" + Path.GetFileNameWithoutExtension(compiled_file) + ".py";
@@ -414,14 +428,13 @@ namespace pyDotexe.Builder
         /// </summary>
         private static void start_replace_py3()
         {
-            string[] folders = Directory.GetDirectories(bset.tmp_module_path, "*", SearchOption.AllDirectories);
-            foreach (string folder_path in folders)
+            foreach (string folder_path in Directory.EnumerateDirectories(bset.tmp_module_path, "*", SearchOption.AllDirectories))
             {
                 if (folder_path.EndsWith("__pycache__")) // find cache folder path.
                 {
                     try
                     {
-                        foreach (string compiled_file in Directory.GetFiles(folder_path, "*", SearchOption.AllDirectories))
+                        foreach (string compiled_file in Directory.EnumerateFiles(folder_path, "*", SearchOption.AllDirectories))
                         {
                             bset.default_src_ex = Path.GetExtension(compiled_file);
                             string copyto = folder_path.Replace("__pycache__", "") + Path.GetFileName(compiled_file).Split('.')[0] + Path.GetExtension(compiled_file);
@@ -505,12 +518,10 @@ namespace pyDotexe.Builder
                 zos.SetLevel(9);
 
             //Get folders.
-            string[] files = System.IO.Directory.GetFiles(zipFolder,
-                "*", System.IO.SearchOption.AllDirectories);
             ICSharpCode.SharpZipLib.Zip.ZipNameTransform nameTrans =
                 new ICSharpCode.SharpZipLib.Zip.ZipNameTransform(zipFolder);
 
-            foreach (string file in files)
+            foreach (string file in Directory.EnumerateFiles(zipFolder, "*", System.IO.SearchOption.AllDirectories))
             {
                 if (file == bset.zip_path) continue;
 

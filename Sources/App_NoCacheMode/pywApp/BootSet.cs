@@ -21,6 +21,7 @@ namespace pywApp
         public string cachefile = "";
 
         public bool folder_active = false;
+        public bool start_out_bin = false;
 
         public BootSet()
         {
