@@ -166,7 +166,7 @@ namespace pyDotexe.Builder
                             "import inspect\r\n" +
                             "for module in module_list:\r\n" +
                             "    try:\r\n" +
-                            "        #exec(\"import \"+ module+ \";print(' + '+ \"+ module +\".__file__)\")\r\n" +
+                            //"        exec(\"import \"+ module+ \";print(' + '+ \"+ module +\".__file__)\")\r\n" +
                             "        exec(\"import \"+ module+ \", inspect;print(' + '+ inspect.getfile(\"+ module +\"))\")\r\n" +
                             "        print(' * '+ module)\r\n" +
                             "    except:\r\n" +
@@ -340,11 +340,12 @@ namespace pyDotexe.Builder
             {
                 pyfile_task.Add(Task.Factory.StartNew(new Action(() =>
                 {
+                    Regex reg = new Regex(regex_data, RegexOptions.Compiled);
                     foreach (string file in Directory.EnumerateFiles(bset.python_path, "*", SearchOption.AllDirectories))
                     {
                         try
                         {
-                            if (Regex.IsMatch(file, regex_data))
+                            if (reg.IsMatch(file))
                             {
                                 bset.module_path.Add(file);
                                 Console.WriteLine(" + " + file);
@@ -370,11 +371,12 @@ namespace pyDotexe.Builder
             {
                 pydir_task.Add(Task.Factory.StartNew(new Action(() =>
                 {
+                    Regex reg = new Regex(regex_data, RegexOptions.Compiled);
                     foreach (string folder in Directory.EnumerateDirectories(bset.python_path, "*", SearchOption.AllDirectories))
                     {
                         try
                         {
-                            if (Regex.IsMatch(folder, regex_data))
+                            if (reg.IsMatch(folder))
                             {
                                 get_pydirfile(folder);
                                 if (!bset.all_search) break;

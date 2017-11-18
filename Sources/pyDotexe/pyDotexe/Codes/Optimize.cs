@@ -55,7 +55,7 @@ namespace pyDotexe.Codes
         /// <returns></returns>
         private static List<string> optcode_trim(string raw_data)
         {
-            //raw_data = Regex.Replace(raw_data, "(\"\"\"|''').*?(\"\"\"|''')", "", RegexOptions.Singleline);
+            //raw_data = Regex.Replace(raw_data, "([a-z]|^.|^|\r\n) *(\"\"\"|''').*?(\"\"\"|''')", "", RegexOptions.Singleline);
             raw_data = Regex.Replace(raw_data, "(?m)^ *#.*\n?", "", RegexOptions.Multiline); // Delete '#' comments
             return new List<string>(raw_data.Split(new string[] { "\n" }, StringSplitOptions.None));
         }
@@ -174,13 +174,6 @@ namespace pyDotexe.Codes
                     def_flag = false;
                     class_flag = true;
                     blanks_flag_num = get_space_num(data_raw);
-                }
-                else if (data.EndsWith("=") & !data.EndsWith("=="))
-                {
-                    def_flag = false;
-                    class_flag = false;
-                    tmp_list.Add(data_raw + "\"\"");
-                    continue;
                 }
                 else
                 {

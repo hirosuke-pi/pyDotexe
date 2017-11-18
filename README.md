@@ -72,7 +72,7 @@ pyDotexeは、Pythonで作成したプログラムを実行ファイル形式に
 
 # <プログラムのコマンド説明>
 
-### v2.0.x-Unityのコマンド一覧です。
+### v2.1.x-Unityのコマンド一覧です。
 
 >pydotexe -build -src yourcode.py
 

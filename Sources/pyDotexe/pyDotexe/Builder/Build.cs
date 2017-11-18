@@ -95,8 +95,11 @@ namespace pyDotexe.Builder
                     optimize_code_start();
                 }
 
-                Console.WriteLine("[+] Compiling imported modules...");
-                replace_compile_file(); // Replace default source codes file to compiled file.
+                if (bset.standalone)
+                {
+                    Console.WriteLine("[+] Compiling imported modules...");
+                    replace_compile_file(); // Replace default source codes file to compiled file.
+                }
 
                 if (bset.one_file)
                 {

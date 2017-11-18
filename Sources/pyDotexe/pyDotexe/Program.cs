@@ -12,7 +12,7 @@ namespace pyDotexe
 {
     class Program
     {
-        static string version = "v2.0.0-Unity";
+        static string version = "v2.1.0-Unity";
         static string py_surpport = "1.6.x, 2.1.x-2.7.x, 3.0.x-3.6.x";
         static string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location); // Local Path S
         static string my_path = Assembly.GetExecutingAssembly().Location;
@@ -34,7 +34,7 @@ namespace pyDotexe
                 else if (cmd_args == "-version") Console.WriteLine(version + "\r\n" + py_surpport);
                 else Main_short_help();              
             }
-            else Main_short_help(); // 
+            else Main_short_help(); // Show Help
             if (wait_key)
             {
                 Console.WriteLine("\r\n[+] Press any key to exit...");
@@ -63,8 +63,8 @@ namespace pyDotexe
                     else if (args[i] == "-file" | args[i] == "-f") bset.module_path.Add(args[++i]); // Set added file path.
                     else if (args[i] == "-dir" | args[i] == "-d") bset.add_modules.Add(args[++i]); // Set added folder path.
                     else if (args[i] == "-import" | args[i] == "-i") bset.base_module.Add("import " + args[++i]); // Set imported Python modules.
-                    else if (args[i] == "-pyfile" | args[i] == "-pf") bset.import_pyfile_list.AddRange(args[++i].Split(',')); // Set Python file name.
-                    else if (args[i] == "-pydir" | args[i] == "-pd") bset.import_pydir_list.AddRange(args[++i].Split(',')); // Set Python folder name.
+                    else if (args[i] == "-pyfile" | args[i] == "-pf") bset.import_pyfile_list.Add(args[++i]); // Set Python file name.
+                    else if (args[i] == "-pydir" | args[i] == "-pd") bset.import_pydir_list.Add(args[++i]); // Set Python folder name.
                     else if (args[i] == "-pymodule" | args[i] == "-pm") bset.add_pymodules_list.AddRange(args[++i].Split(',')); // Set Python module name.
                     else if (args[i] == "-resfile" | args[i] == "-rf") bset.resource_file.AddRange(args[++i].Split(',')); // Set resource file name.
                     else if (args[i] == "-resdir" | args[i] == "-rd") bset.resource_folder.AddRange(args[++i].Split(',')); // Set resource folder name.
@@ -187,7 +187,7 @@ namespace pyDotexe
                 }
             }
             if (logger) Main_make_log(args, "pyDotexe_Hook_log.txt");
-            Console.WriteLine("\a\r\n[+] Completed Changing Module-Hook files data.");
+            Console.WriteLine("\a\r\n[+] Completed changing Module-Hooks files data.");
         }
 
         static void Main_short_help()
