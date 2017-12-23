@@ -1,0 +1,5 @@
+[pydir, \\docutils\\writers]
+[pydir, \\docutils\\languages]
+[pydir, \\docutils\\parsers\\rst\\languages]
+[pydir, \\docutils\\parsers\\rst\\directives]
+[pydirfile, \\docutils]

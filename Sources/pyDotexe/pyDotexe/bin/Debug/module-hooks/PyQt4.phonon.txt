@@ -1,0 +1,2 @@
+[pydir, (PyQt4).*?(phonon_backend)]
+[pyfile, \\PyQt4\\QtGui.py]

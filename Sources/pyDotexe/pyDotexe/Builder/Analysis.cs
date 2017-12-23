@@ -71,20 +71,7 @@ namespace pyDotexe.Builder
 
                 if (bset.check_only)
                 {
-                    Console.WriteLine("\r\n[+] Getting default Python libararies and binaries...");
-                    foreach (string default_modules in bset.default_import)
-                        Console.WriteLine(" + " + default_modules);
-
-                    Console.WriteLine("\r\n[+] Imported module name list:");
-                    foreach (string suc_module in bset.module_hooks_list)
-                        Console.Write(suc_module + ", ");
-
-                    Console.WriteLine("\r\n\r\n[-] Could not get module path list:");
-                    foreach (string err_module in bset.error_modules_list)
-                        Console.Write(err_module + ", ");
-
-                    Console.WriteLine("\r\n\r\n\a[+] Get module Python function: sys.modules.keys()");
-                    Console.WriteLine("[+] Completed getting Python module and library files.");
+                    show_module_list();
                     return false;
                 }
 
@@ -115,6 +102,24 @@ namespace pyDotexe.Builder
                 catch { }
             }
             return false;
+        }
+
+        public static void show_module_list()
+        {
+            Console.WriteLine("\r\n[+] Getting default Python libararies and binaries...");
+            foreach (string default_modules in bset.default_import)
+                Console.WriteLine(" + " + default_modules);
+
+            Console.WriteLine("\r\n[+] Imported module name list:");
+            foreach (string suc_module in bset.module_hooks_list)
+                Console.Write(suc_module + ", ");
+
+            Console.WriteLine("\r\n\r\n[-] Could not get module path list:");
+            foreach (string err_module in bset.error_modules_list)
+                Console.Write(err_module + ", ");
+
+            Console.WriteLine("\r\n\r\n\a[+] Get module Python function: sys.modules.keys()");
+            Console.WriteLine("[+] Completed getting Python module and library files.");
         }
 
         /// <summary>

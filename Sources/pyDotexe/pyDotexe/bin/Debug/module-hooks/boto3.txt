@@ -1,0 +1,4 @@
+[pydir, \\boto3]
+[pydirfile, boto3\\dynamodb]
+[pydirfile, boto3\\ec2]
+[pydirfile, boto3\\s3]

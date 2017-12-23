@@ -73,17 +73,33 @@ namespace pyDotexe.Builder
 
                 if (bset.debug) // Debug mode only.
                 {
-                    Console.WriteLine("\a\r\n[+] Debug path and command-options extracted. You can start in Command-Lines.");
+                    Console.WriteLine("\r\n");
+                    Analysis.show_module_list();
+                    Console.WriteLine("\r\n[+] Debug path and command-options extracted. You can start in Command-Lines.");
+                    string startCMD = "";
+                    string startApp = "";
 
                     if (bset.standalone)
                     {
-                        Console.WriteLine("[*] \"" + bset.tmp_module_path + @"\" + Path.GetFileName(bset.default_python_bin) + "\" \""
-                            + bset.tmp_module_path + @"\" + Path.GetFileNameWithoutExtension(bset.source_path) + bset.default_src_ex + "\"");
+                        startApp = "\"" + bset.tmp_module_path + @"\" + Path.GetFileName(bset.default_python_bin) + "\"";
+                        startCMD = "\"" + bset.tmp_module_path + @"\" + Path.GetFileNameWithoutExtension(bset.source_path) + bset.default_src_ex + "\"";
                     }
                     else
                     {
-                        Console.WriteLine("[*] \"" + bset.tmp_module_path + @"\" + Path.GetFileNameWithoutExtension(bset.source_path) + bset.default_src_ex + "\"");
+                        startApp = "python";
+                        startCMD = "\"" + bset.tmp_module_path + @"\" + Path.GetFileNameWithoutExtension(bset.source_path) + bset.default_src_ex + "\"";
                     }
+
+                    Console.WriteLine("[*] "+ startApp +" "+ startCMD);                   
+                    try
+                    {
+                        using (StreamWriter sw = new StreamWriter(bset.tmp_folder_path + @"\pydotexe_debug.bat"))
+                        {
+                            sw.WriteLine(startApp +" "+ startCMD);
+                            sw.WriteLine("pause");
+                        }
+                        Process.Start(bset.tmp_folder_path + @"\pydotexe_debug.bat");
+                    } catch { }
                     return false;
                 }
 

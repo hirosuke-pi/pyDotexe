@@ -1,0 +1,1 @@
+[pydir, \\lib2to3]

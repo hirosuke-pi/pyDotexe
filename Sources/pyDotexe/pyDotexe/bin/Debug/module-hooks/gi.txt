@@ -1,0 +1,2 @@
+[pyfile, gi\\_error.py]
+[pyfile, gi\\_option.py]

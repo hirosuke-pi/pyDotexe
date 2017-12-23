@@ -1,0 +1,3 @@
+[pyfile, \\PyQt5\\QtNetwork.py]
+[pydir, (PyQt5).*?(audio)]
+[pydir, (PyQt5).*?(mediaservice)]

@@ -1,0 +1,2 @@
+[pydir, (PyQt4).*?(bearer)]
+[pyfile, \\PyQt4\\QtCore.py]

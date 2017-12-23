@@ -1,0 +1,1 @@
+[pydir, django\\template\\loaders]

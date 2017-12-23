@@ -1,0 +1,5 @@
+[pyfile, email\\mine\\message.py]
+[pyfile, email\\mine\\image.py]
+[pyfile, email\\mine\\text.py]
+[pyfile, email\\mine\\multipart.py]
+[pyfile, email\\mine\\audio.py]

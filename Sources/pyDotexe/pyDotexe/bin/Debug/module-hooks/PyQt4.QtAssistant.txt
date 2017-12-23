@@ -1,0 +1,1 @@
+[pyfile, \\PyQt4\\QtCore.py]

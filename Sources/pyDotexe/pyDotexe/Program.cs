@@ -12,7 +12,7 @@ namespace pyDotexe
 {
     class Program
     {
-        static string version = "v2.1.0-Unity";
+        static string version = "v2.1.1-Unity";
         static string py_surpport = "1.6.x, 2.1.x-2.7.x, 3.0.x-3.6.x";
         static string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location); // Local Path S
         static string my_path = Assembly.GetExecutingAssembly().Location;

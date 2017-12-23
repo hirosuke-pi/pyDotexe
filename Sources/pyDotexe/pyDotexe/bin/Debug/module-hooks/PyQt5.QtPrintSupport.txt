@@ -1,0 +1,4 @@
+[pydir, (PyQt5).*?(printsupport)]
+[pyfile, \\PyQt5\\QtCore.py]
+[pyfile, \\PyQt5\\QtGui.py]
+[pyfile, \\PyQt5\\QtWidgets.py]
