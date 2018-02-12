@@ -1,7 +1,7 @@
 import os, sys
 from pydotexe.private import install, check, start
 
-__version__ = "2.0.0"
+__version__ = "2.1.1"
 
 class build(object):
     ''' Build Python program setup-class. '''
@@ -55,7 +55,6 @@ class build(object):
         if (self.icon != ""): argv = argv + " -icon "+ self.icon
         if (self.argv != ""): argv = argv + " -argv "+ self.argv
         if (self.py_version != ""): argv = argv + " -pyver "+ self.py_version
-        if ((self.module_loader != "" ) and (os.path.isfile(self.module_loader))): argv = argv + " -loader "+ self.module_loader
 
         if (len(self.import_list) != 0): argv = argv + " -import "+ ",".join(self.import_list)
         if (len(self.pymodule) != 0): argv = argv + " -pymodule "+ ",".join(self.pymodule)
@@ -63,7 +62,7 @@ class build(object):
         if (len(self.dir_list) != 0): argv = argv + " -dir "+ ",".join(self.dir_list)
         if (len(self.pyfile) != 0): argv = argv + " -pyfile "+ ",".join(self.pyfile)
         if (len(self.pydir) != 0): argv = argv + " -pydir "+ ",".join(self.pydir)
-        if (len(self.pydir_regex) != 0): argv = argv + " -exclude "+ " -exclude ".join(self.pydir_regex)
+        if (len(self.exclude) != 0): argv = argv + " -exclude "+ " -exclude ".join(self.exclude)
         if (len(self.resfile) != 0): argv = argv + " -resfile "+ ",".join(self.resfile)
         if (len(self.resdir) != 0): argv = argv + " -resdir "+ ",".join(self.resdir)
 
