@@ -42,7 +42,7 @@ def install_pydotexe(save_dir, version):
             os.remove(tmp_zipfile)
         except:
             pass
-        print("[+] pyDotexe installation complteted.\r\n")
+        print("[+] pyDotexe installation completed.\r\n")
         return True
     except:
         return False
